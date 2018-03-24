@@ -1,0 +1,23 @@
+# OS X
+.DS_Store
+
+# Editors
+*.swp
+*~
+.idea/
+.vscode
+
+# Node
+node_modules
+npm-shrinkwrap.json
+
+# Yarn
+.yarnclean
+yarn-error.log
+yarn.lock
+
+# Generated Files
+*.log
+coverage/
+dist/
+build/
