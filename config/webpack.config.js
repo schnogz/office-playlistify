@@ -3,11 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isProdBuild = process.env.NODE_ENV === 'production';
 const buildEnvString = isProdBuild ? 'production' : 'development';
-const runBundleAnalyzer = process.env.ANALYZE;
 const PATHS = {
   build: `${__dirname}/../build`,
   dist: `${__dirname}/../dist`,
@@ -105,8 +103,7 @@ module.exports = {
     ...(!isProdBuild ? [
       new Webpack.HotModuleReplacementPlugin(),
       new Webpack.NoEmitOnErrorsPlugin()
-    ] : []),
-    ...(runBundleAnalyzer ? [new BundleAnalyzerPlugin({})] : [])
+    ] : [])
   ],
   optimization: {
     namedModules: true,
