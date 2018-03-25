@@ -22,12 +22,10 @@
   },
   "proxy": "http://localhost:3001/",
   "scripts": {
-    "analyze": "ANALYZE=true NODE_ENV=production webpack-cli --config webpack.config.js",
     "build": "webpack-cli --config webpack.config.js --progress --colors",
     "build:prod": "NODE_ENV=production webpack-cli --config webpack.config.js --progress --colors",
     "ci:build": "webpack-cli --config webpack.config.js --display-error-details",
     "ci:build:prod": "NODE_ENV=production webpack-cli --config webpack.config.js --display-error-details",
-    "generate": "babel-node ./tools/generateDefaultLocale.js",
     "start": "node ./server/index.js",
     "start:prod": "NODE_ENV=production node ./server/index.js",
     "test": "jest",
@@ -125,8 +123,8 @@
     "style-loader": "^0.20.3",
     "styled-components": "^3.2.3",
     "webpack": "^4.1.1",
-    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.12",
+    "webpack-dev-middleware": "^3.0.1",
     "webpack-hot-middleware": "^2.21.2"
   }
 }

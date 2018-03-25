@@ -2,7 +2,7 @@
 // https://github.com/thelinmichael/spotify-web-api-node
 const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
-const apiKeys = require('../../../config/apiKeys');
+const apiKeys = require('../../../config/api.config');
 
 const redirect_uri = 'http://localhost:3001/api/spotify/loginCallback'; // login callback URL
 const scopes = ['user-read-private', 'user-read-email']; // requested privileges

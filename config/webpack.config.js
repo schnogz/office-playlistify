@@ -9,9 +9,9 @@ const isProdBuild = process.env.NODE_ENV === 'production';
 const buildEnvString = isProdBuild ? 'production' : 'development';
 const runBundleAnalyzer = process.env.ANALYZE;
 const PATHS = {
-  build: `${__dirname}/build`,
-  dist: `${__dirname}/dist`,
-  src: `${__dirname}/client`
+  build: `${__dirname}/../build`,
+  dist: `${__dirname}/../dist`,
+  src: `${__dirname}/../client`
 };
 
 module.exports = {

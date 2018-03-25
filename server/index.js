@@ -9,7 +9,7 @@ const methods = require('methods');
 const requestIp = require('request-ip');
 
 const webpack = require('webpack');
-const webpackConfig = require('./../webpack.config');
+const webpackConfig = require('./../config/webpack.config');
 const compiler = webpack(webpackConfig);
 
 const isProduction = process.env.NODE_ENV === 'production';
