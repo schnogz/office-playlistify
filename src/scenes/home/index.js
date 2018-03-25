@@ -4,7 +4,6 @@ import { compose, bindActionCreators } from 'redux'
 
 import Home from './template.js'
 
-
 class LoginContainer extends React.Component {
   constructor (props) {
     super(props)
