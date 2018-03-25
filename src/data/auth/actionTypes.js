@@ -1,0 +1,5 @@
+export const LOGIN = 'LOGIN'
+export const AUTHENTICATE = 'AUTHENTICATE'
+export const REGISTER = 'REGISTER'
+export const LOGOUT = 'LOGOUT'
+export const START_LOGOUT_TIMER = 'START_LOGOUT_TIMER'

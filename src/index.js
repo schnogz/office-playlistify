@@ -1,17 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import App from 'scenes/app.js'
+import App from 'scenes'
 import configureStore from 'store'
-import configureLocales from 'services/LocalesService'
+
 
 const { store, history } = configureStore()
-const { messages } = configureLocales(store)
 
 const render = Component => {
   ReactDOM.render(
     <AppContainer key={Math.random()} warnings={false}>
-      <Component store={store} history={history} messages={messages} />
+      <Component store={store} history={history} />
     </AppContainer>,
     document.getElementById('app')
   )
@@ -20,5 +19,5 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('scenes/app.js', () => render(require('scenes/app.js').default))
+  module.hot.accept('scenes/index.js', () => render(require('scenes/index.js').default))
 }

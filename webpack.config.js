@@ -9,13 +9,30 @@ const isProdBuild = process.env.NODE_ENV === 'production'
 const buildEnvString = isProdBuild ? 'production' : 'development'
 const runBundleAnalyzer = process.env.ANALYZE
 const PATHS = {
-  build: `${__dirname}/../../build`,
-  dist: `${__dirname}/../../dist`,
+  build: `${__dirname}/build`,
+  dist: `${__dirname}/dist`,
   src: `${__dirname}/src`
 }
 
 module.exports = {
   mode: buildEnvString,
+  resolve: {
+    alias: {
+      "img": PATHS.src + '/assets/img',
+      "sass": PATHS.src + '/assets/sass',
+      "components": PATHS.src + '/components',
+      "config": PATHS.src + '/config',
+      "data": PATHS.src + '/data',
+      "layouts": PATHS.src + '/layouts',
+      "middleware": PATHS.src + '/middleware',
+      "providers": PATHS.src + '/providers',
+      "scenes": PATHS.src + '/scenes',
+      "services": PATHS.src + '/services',
+      "store": PATHS.src + '/store',
+      "themes": PATHS.src + '/themes'
+    },
+    symlinks: false
+  },
   entry: {
     app: [
       'babel-polyfill',
@@ -39,7 +56,6 @@ module.exports = {
         use: ['babel-loader']
       } : {
         test: /\.js$/,
-        include: /src|blockchain-info-components.src|blockchain-wallet-v4.src/,
         use: [{
           loader: 'babel-loader',
           options: {
@@ -130,13 +146,6 @@ module.exports = {
           chunks: 'initial',
           name: 'vendor',
           priority: -10,
-          test: function (module) {
-            // ensure other packages in mono repo don't get put into vendor bundle
-            return module.resource &&
-              module.resource.indexOf('blockchain-wallet-v4-frontend/src') === -1 &&
-              module.resource.indexOf('node_modules/blockchain-info-components/src') === -1 &&
-              module.resource.indexOf('node_modules/blockchain-wallet-v4/src') === -1
-          }
         }
       }
     }
