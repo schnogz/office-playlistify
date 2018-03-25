@@ -12,7 +12,7 @@ const webpack = require('webpack');
 const webpackConfig = require('./../config/webpack.config');
 const compiler = webpack(webpackConfig);
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV.indexOf('production') !== -1;
 let app = express();
 
 // setup middleware

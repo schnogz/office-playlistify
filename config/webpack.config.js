@@ -4,8 +4,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-const isProdBuild = process.env.NODE_ENV === 'production';
+const isProdBuild = process.env.NODE_ENV.indexOf('production') !== -1;
 const buildEnvString = isProdBuild ? 'production' : 'development';
+
+console.log(`Webpack build mode: ${buildEnvString}`);
+
 const PATHS = {
   build: `${__dirname}/../build`,
   dist: `${__dirname}/../dist`,
