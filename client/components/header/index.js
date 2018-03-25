@@ -9,6 +9,7 @@ import AccountCircle from 'material-ui-icons/AccountCircle';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Button from 'material-ui/Button';
 import { NavLink } from 'react-router-dom'
+import logo from 'images/logo.png';
 
 const styles = {
   root: {
@@ -42,7 +43,6 @@ class AppHeader extends React.Component {
 
   render() {
     const { auth, classes } = this.props;
-    console.log(auth)
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -50,7 +50,8 @@ class AppHeader extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <NavLink to="/login" className={classes.flex} style={{ textDecoration: 'none'}}>
+            <img src={logo} alt="Logo" height="35" />
+            <NavLink to="/login" className={classes.flex} style={{ textDecoration: 'none', marginLeft: '15px'}}>
               <Typography variant="title" color="secondary">
                 Office Playlistify
               </Typography>

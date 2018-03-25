@@ -1,25 +1,25 @@
-const Webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const Webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const isProdBuild = process.env.NODE_ENV === 'production'
-const buildEnvString = isProdBuild ? 'production' : 'development'
-const runBundleAnalyzer = process.env.ANALYZE
+const isProdBuild = process.env.NODE_ENV === 'production';
+const buildEnvString = isProdBuild ? 'production' : 'development';
+const runBundleAnalyzer = process.env.ANALYZE;
 const PATHS = {
   build: `${__dirname}/build`,
   dist: `${__dirname}/dist`,
-  src: `${__dirname}/src`
-}
+  src: `${__dirname}/client`
+};
 
 module.exports = {
+  context: isProdBuild ? (PATHS.dist) : (PATHS.build),
   mode: buildEnvString,
   resolve: {
     alias: {
-      "img": PATHS.src + '/assets/img',
-      "sass": PATHS.src + '/assets/sass',
+      "images": PATHS.src + '/assets/images',
       "components": PATHS.src + '/components',
       "config": PATHS.src + '/config',
       "data": PATHS.src + '/data',
@@ -38,7 +38,7 @@ module.exports = {
       'babel-polyfill',
       ...(isProdBuild ? [] : [
         'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:8080',
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         'webpack/hot/only-dev-server'
       ]),
       PATHS.src + '/index.js'
@@ -71,12 +71,9 @@ module.exports = {
         }
       }
       }, {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|ico)$/,
         use: {
-          loader: 'file-loader',
-          options: {
-            name: 'img/[name]-[hash].[ext]'
-          }
+          loader: 'file-loader?name=[name].[ext]'
         }
       }, {
         test: /\.(pdf)$/,
@@ -105,7 +102,10 @@ module.exports = {
     new Webpack.DefinePlugin({
       'process.env': {'NODE_ENV': JSON.stringify(buildEnvString)}
     }),
-    ...(!isProdBuild ? [new Webpack.HotModuleReplacementPlugin()] : []),
+    ...(!isProdBuild ? [
+      new Webpack.HotModuleReplacementPlugin(),
+      new Webpack.NoEmitOnErrorsPlugin()
+    ] : []),
     ...(runBundleAnalyzer ? [new BundleAnalyzerPlugin({})] : [])
   ],
   optimization: {
@@ -149,24 +149,5 @@ module.exports = {
         }
       }
     }
-  },
-  devServer: {
-    contentBase: PATHS.src,
-    host: 'localhost',
-    port: 8080,
-    hot: !isProdBuild,
-    historyApiFallback: true,
-    proxy: [{
-      path: /\/a\/.*/,
-      bypass: function (req, res, proxyOptions) {
-        return '/index.html'
-      }
-    }],
-    overlay:
-    !isProdBuild && {
-      warnings: true,
-      errors: true
-    },
-    headers: {}
   }
-}
+};
