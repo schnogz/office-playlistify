@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Field, reduxForm } from 'redux-form'
 import AppHeader from 'components/header'
+import Button from 'material-ui/Button';
 
 const Fragment = React.Fragment;
 
@@ -12,7 +13,7 @@ const Login = (props) => {
   return (
     <Fragment>
       <AppHeader auth={false}/>
-      <p>registration</p>
+      <Button variant="raised" color="primary">Authorize App</Button>
     </Fragment>
 
   )

@@ -1,5 +1,5 @@
 const router = require('express').Router();
 
-router.use('/api/session', require('./session/index'));
+router.use('/api/spotify', require('./spotify/index'));
 
 module.exports = router;

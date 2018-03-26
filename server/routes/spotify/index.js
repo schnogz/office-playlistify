@@ -4,14 +4,21 @@ const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 const apiKeys = require('../../../config/api.config');
 
-const redirect_uri = 'http://localhost:3001/api/spotify/loginCallback'; // login callback URL
-const scopes = ['user-read-private', 'user-read-email']; // requested privileges
+// requested privileges
+const scopes = [
+  'user-read-private',
+  'playlist-modify-public',
+  'playlist-modify-private',
+  'playlist-read-collaborative',
+  'user-read-currently-playing'
+];
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: apiKeys.client_id,
-  clientSecret: apiKeys.client_secret,
-  redirectUri: redirect_uri
+  clientId: apiKeys.spotify.client_id,
+  clientSecret: apiKeys.spotify.client_secret,
+  redirectUri: 'http://localhost:8080/api/spotify/loginCallback'
 });
+
 
 router.get('/login', function(req, res, next) {
   // create the authorization URL
@@ -25,21 +32,27 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/loginCallback', function(req, res, next) {
-  let code = req.query.code || null;
-  //var state = req.query.state || null;
-  //var storedState = req.cookies ? req.cookies['state'] : null;
+  let authCode = req.query.code || null;
 
   // retrieve and store the access token and a refresh token
-  spotifyApi.authorizationCodeGrant(code)
+  spotifyApi.authorizationCodeGrant(authCode)
     .then(function(data) {
       // set the access token on the API object to use it in later calls
       spotifyApi.setAccessToken(data.body['access_token']);
       spotifyApi.setRefreshToken(data.body['refresh_token']);
 
-      res.send({
-        access_token: spotifyApi.getAccessToken(),
-        refresh_token: spotifyApi.getRefreshToken()
-      });
+      // retrieve user data
+      spotifyApi.getMe()
+        .then(function(data) {
+          res.send({
+            access_token: spotifyApi.getAccessToken(),
+            refresh_token: spotifyApi.getRefreshToken(),
+            user: data.body
+          });
+        }, function(err) {
+          return res.status(500).json({ error: 'Spotify user fetch failed', stacktrace: err });
+        });
+
     }, function(err) {
       return res.status(500).json({ error: 'Spotify auth callback failed', stacktrace: err });
     });
@@ -52,6 +65,18 @@ router.get('/refresh', function(req, res, next) {
       spotifyApi.setAccessToken(data.body['access_token']);
     }, function(err) {
       res.status(500).json({ error: 'Spotify auth token refresh failed', stacktrace: err });
+    });
+});
+
+router.get('/user/getPlaylists', function(req, res, next) {
+  console.log(req);
+
+  spotifyApi.getUserPlaylists('schneida_04')
+    .then(function(data) {
+      console.log('Retrieved playlists', data.body);
+      res.send(data.body);
+    },function(err) {
+      console.log('Something went wrong!', err);
     });
 });
 
