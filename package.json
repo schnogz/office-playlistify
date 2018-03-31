@@ -60,6 +60,7 @@
     "connected-react-router": "^4.2.3",
     "copy-webpack-plugin": "^4.5.1",
     "cors": "2.8.4",
+    "cross-fetch": "^2.1.0",
     "css-loader": "^0.28.10",
     "detect-port": "1.2.2",
     "dotenv": "5.0.1",

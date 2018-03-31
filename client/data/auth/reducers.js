@@ -9,10 +9,11 @@ const INITIAL_STATE = {
 
 const auth = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-
+  console.info(action)
   switch (type) {
     case AT.LOGIN: {
-      return assoc('isLoggingIn', true, state)
+      const { username } = payload;
+      return assoc('isLoggingIn', username, state)
     }
     case AT.AUTHENTICATE: {
       return assoc('isAuthenticated', true, state)

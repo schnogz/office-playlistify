@@ -68,10 +68,8 @@ router.get('/refresh', function(req, res, next) {
     });
 });
 
-router.get('/user/getPlaylists', function(req, res, next) {
-  console.log(req);
-
-  spotifyApi.getUserPlaylists('schneida_04')
+router.get('/:username/getPlaylists', function(req, res, next) {
+  spotifyApi.getUserPlaylists(req.params.username)
     .then(function(data) {
       console.log('Retrieved playlists', data.body);
       res.send(data.body);
