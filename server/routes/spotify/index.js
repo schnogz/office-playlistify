@@ -27,8 +27,8 @@ router.get('/login', function(req, res, next) {
 
   res.cookie('state', state);
 
-  // redirect to authorization URL
-  res.redirect(authorizeURL);
+  // return authorization URL
+  res.send({authorizeURL});
 });
 
 router.get('/loginCallback', function(req, res, next) {
@@ -37,22 +37,13 @@ router.get('/loginCallback', function(req, res, next) {
   // retrieve and store the access token and a refresh token
   spotifyApi.authorizationCodeGrant(authCode)
     .then(function(data) {
+      let accessToken = data.body['access_token'];
+      let refreshToken = data.body['refresh_token'];
       // set the access token on the API object to use it in later calls
-      spotifyApi.setAccessToken(data.body['access_token']);
-      spotifyApi.setRefreshToken(data.body['refresh_token']);
+      spotifyApi.setAccessToken(accessToken);
+      spotifyApi.setRefreshToken(refreshToken);
 
-      // retrieve user data
-      spotifyApi.getMe()
-        .then(function(data) {
-          res.send({
-            access_token: spotifyApi.getAccessToken(),
-            refresh_token: spotifyApi.getRefreshToken(),
-            user: data.body
-          });
-        }, function(err) {
-          return res.status(500).json({ error: 'Spotify user fetch failed', stacktrace: err });
-        });
-
+      return res.status(200).json({accessToken, refreshToken});
     }, function(err) {
       return res.status(500).json({ error: 'Spotify auth callback failed', stacktrace: err });
     });

@@ -26,6 +26,7 @@ const Login = (props) => {
   return (
     <Wrapper>
       <h1>Welcome</h1>
+      <h3>Enter Spotify username below</h3>
       <Field name="username" component="input" type="text" />
       <LinkContainer to='/home' style={{margin: '10px'}}>
         <Button variant="raised" color="primary" onClick={onSubmit}>Login</Button>
