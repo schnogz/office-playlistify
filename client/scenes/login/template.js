@@ -1,6 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Field, reduxForm } from 'redux-form'
 import { LinkContainer } from 'react-router-bootstrap'
 import Button from 'material-ui/Button';
 
@@ -23,14 +23,17 @@ const Footer = styled.div`
 `;
 
 const Login = (props) => {
-  const { submitting, invalid, ...rest } = props;
-  const { onSubmit, authType } = rest;
+  const { onSubmit, onUsernameChange, username } = props;
 
   return (
     <Fragment>
       <AppHeader auth={false}/>
       <Wrapper>
         <h1>Welcome</h1>
+        <input type="text" value={username}/>
+        <LinkContainer to='/home' style={{margin: '10px'}}>
+          <Button variant="raised" color="primary" onClick={onSubmit}>Login</Button>
+        </LinkContainer>
         <h3>Register or continue as guest</h3>
         <LinkContainer to='/register' style={{margin: '10px'}}>
           <Button variant="raised" color="secondary">Register</Button>
@@ -46,4 +49,9 @@ const Login = (props) => {
   )
 };
 
-export default reduxForm({ form: 'login' })(Login)
+Login.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired
+};
+
+export default Login

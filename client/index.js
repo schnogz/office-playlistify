@@ -17,5 +17,5 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('scenes/index.js', () => render(require('scenes/index.js').default))
+  module.hot.accept();
 }
