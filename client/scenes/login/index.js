@@ -1,20 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { compose, bindActionCreators } from 'redux'
 import { formValueSelector } from 'redux-form'
-import { actions } from 'data'
-import AppHeader from 'components/header'
-import Login from './template'
 
-const Fragment = React.Fragment
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width:100%
-`
+import { actions } from 'data'
+import Login from './template'
 
 class LoginContainer extends React.Component {
   constructor (props) {
@@ -30,20 +20,9 @@ class LoginContainer extends React.Component {
     this.props.authActions.login(username)
   }
 
-  // onSubmit (username) {
-  //   console.log(username)
-  //   //const { username } = this.props
-  //   //.props.authActions.login(username)
-  // }
-
   render () {
     return (
-      <Fragment>
-        <AppHeader auth={false} />
-        <Wrapper>
-          <Login onSubmit={this.onSubmit} />
-        </Wrapper>
-      </Fragment>
+      <Login onSubmit={this.onSubmit} />
     )
   }
 }

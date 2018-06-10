@@ -1,61 +1,50 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
-import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
+import { Button, Paper, Grid } from '@material-ui/core'
 import { Field, reduxForm } from 'redux-form'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width:100%
+import bgImg from 'images/login-bg.jpg'
+
+injectGlobal`
+  body {
+    background-image: url(${bgImg});
+    background-size: cover;
+    background-position: top center;
+    height: 100%;
+    width: 100%;
+  }
 `
-const Footer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 15px;
-`
+
+const styles = theme => ({
+  container: {
+    height: '100%'
+  },
+  paper: {
+    height: '100%',
+    padding: '25px'
+  }
+})
 
 const Login = (props) => {
-  const { onSubmit } = props
+  const { classes, onSubmit } = props
 
   return (
-    <Wrapper>
-      <h1>Welcome</h1>
-      <h3>Enter Spotify username below</h3>
-      <Field component='input'
-          name='username'
-          type='text'
-      />
-      <LinkContainer style={{margin: '10px'}}
-          to='/home'
-      >
-        <Button color='primary'
-          onClick={onSubmit}
-          variant='raised'
-        >Login</Button>
-      </LinkContainer>
-      <h3>Register or continue as guest</h3>
-      <LinkContainer style={{margin: '10px'}}
-          to='/register'
-      >
-        <Button color='secondary'
-          variant='raised'
-        >Register</Button>
-      </LinkContainer>
-      <LinkContainer to='/home'>
-        <Button color='secondary'
-          variant='raised'
-        >Continue As Guest</Button>
-      </LinkContainer>
-      <Footer>
-        <h5>Having Trouble?</h5>
-      </Footer>
-    </Wrapper>
+    <Grid container className={classes.container} alignItems={'center'} direction={'row'} justify={'center'}>
+      <Paper square={false} className={classes.paper} alignItems={'center'} direction={'row'} justify={'center'}>
+        <LinkContainer to='/home'>
+          <Button color='primary' onClick={onSubmit} variant='raised'>Login</Button>
+        </LinkContainer>
+        <LinkContainer to='/register'>
+          <Button color='secondary' variant='raised'>Register</Button>
+        </LinkContainer>
+        <LinkContainer to='/home'>
+          <Button color='secondary' variant='raised'>Continue As Guest</Button>
+        </LinkContainer>
+      </Paper>
+    </Grid>
   )
 }
 
@@ -63,4 +52,6 @@ Login.propTypes = {
   onSubmit: PropTypes.func.isRequired
 }
 
-export default reduxForm({ form: 'login' })(Login)
+export default withStyles(styles)(Login)
+
+// export default reduxForm({ form: 'login' })(Login)
