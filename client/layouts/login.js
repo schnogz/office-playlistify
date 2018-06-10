@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   background-color: #ecebe8;
-`;
+`
 
 const ContentContainer = styled.div`
   // display: flex;
@@ -14,7 +14,7 @@ const ContentContainer = styled.div`
   // align-items: center;
   // height: 100%;
   // overflow-y: hidden;
-`;
+`
 
 const LoginLayout = ({component: Component, ...rest}) => {
   return (
@@ -26,6 +26,6 @@ const LoginLayout = ({component: Component, ...rest}) => {
       </Wrapper>
     )} />
   )
-};
+}
 
 export default LoginLayout

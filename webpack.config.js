@@ -1,35 +1,37 @@
-const Webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const Webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
-const isProdBuild = process.env.NODE_ENV && process.env.NODE_ENV.indexOf('production') !== -1;
-const buildEnvString = isProdBuild ? 'production' : 'development';
+const isProdBuild = process.env.NODE_ENV && process.env.NODE_ENV.indexOf('production') !== -1
+const buildEnvString = isProdBuild ? 'production' : 'development'
 
-console.log(`Webpack build mode: ${buildEnvString}`);
+/* eslint-disable no-console */
+
+console.log(`Webpack build mode: ${buildEnvString}`)
 
 const PATHS = {
   build: `${__dirname}/build`,
   dist: `${__dirname}/dist`,
   src: `${__dirname}/client`
-};
+}
 
 module.exports = {
   context: __dirname,
   mode: buildEnvString,
   resolve: {
     alias: {
-      "images": PATHS.src + '/assets/images',
-      "components": PATHS.src + '/components',
-      "config": PATHS.src + '/config',
-      "data": PATHS.src + '/data',
-      "layouts": PATHS.src + '/layouts',
-      "middleware": PATHS.src + '/middleware',
-      "providers": PATHS.src + '/providers',
-      "scenes": PATHS.src + '/scenes',
-      "services": PATHS.src + '/services',
-      "store": PATHS.src + '/store',
-      "themes": PATHS.src + '/themes'
+      'images': PATHS.src + '/assets/images',
+      'components': PATHS.src + '/components',
+      'config': PATHS.src + '/config',
+      'data': PATHS.src + '/data',
+      'layouts': PATHS.src + '/layouts',
+      'middleware': PATHS.src + '/middleware',
+      'providers': PATHS.src + '/providers',
+      'scenes': PATHS.src + '/scenes',
+      'services': PATHS.src + '/services',
+      'store': PATHS.src + '/store',
+      'themes': PATHS.src + '/themes'
     },
     symlinks: false
   },
@@ -60,13 +62,13 @@ module.exports = {
           }
         }]
       }), {
-      test: /\.(eot|ttf|otf|woff|woff2)$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name]-[hash].[ext]'
+        test: /\.(eot|ttf|otf|woff|woff2)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name]-[hash].[ext]'
+          }
         }
-      }
       }, {
         test: /\.(png|jpg|gif|svg|ico)$/,
         use: {
@@ -94,4 +96,4 @@ module.exports = {
       'process.env': {'NODE_ENV': JSON.stringify(buildEnvString)}
     })
   ]
-};
+}

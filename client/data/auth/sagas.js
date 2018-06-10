@@ -15,7 +15,7 @@ export const login = function * (action) {
     error => console.log('An error occurred.', error)
   ).then(json =>
     window.location = json.authorizeURL
-    //dispatch(receivePosts(subreddit, json))
+    // dispatch(receivePosts(subreddit, json))
   )
   yield put(actions.router.push('/home'))
   yield fetch(`/api/spotify/${username}/getPlaylists`).then(
@@ -26,24 +26,24 @@ export const login = function * (action) {
     // https://github.com/facebook/react/issues/6895
     error => console.log('An error occurred.', error)
   )
-  .then(json =>
-    console.log(json)
-    //dispatch(receivePosts(subreddit, json))
-  )
-  //yield put(actions.router.push('/home'))
+    .then(json =>
+      console.log(json)
+    // dispatch(receivePosts(subreddit, json))
+    )
+  // yield put(actions.router.push('/home'))
   yield console.log('login saga end')
-};
+}
 
 export const register = function * (action) {
   yield console.log('register')
-};
+}
 
 export const logout = function * () {
   yield console.log('logout')
-};
+}
 
 export default function * () {
-  yield takeLatest(AT.LOGIN, login);
-  yield takeLatest(AT.REGISTER, register);
-  yield takeLatest(AT.LOGOUT, logout);
+  yield takeLatest(AT.LOGIN, login)
+  yield takeLatest(AT.REGISTER, register)
+  yield takeLatest(AT.LOGOUT, logout)
 }

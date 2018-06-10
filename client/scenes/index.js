@@ -2,8 +2,8 @@ import React from 'react'
 import { Redirect, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
-import CssBaseline from 'material-ui/CssBaseline';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import CssBaseline from 'material-ui/CssBaseline'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
 import Login from './login'
 import Register from './register'
@@ -19,14 +19,14 @@ const theme = createMuiTheme({
       light: '#39796b',
       main: '#004d40',
       dark: '#00251a',
-      contrastText: '#ffffff',
+      contrastText: '#ffffff'
     }
   }
-});
+})
 
 class App extends React.Component {
   render () {
-    const { store, history } = this.props;
+    const { store, history } = this.props
 
     return (
       <Provider store={store}>

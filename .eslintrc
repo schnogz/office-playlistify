@@ -7,7 +7,7 @@
       "jsx": true
     }
   },
-  "plugins": ["babel", "react", "jest"],
+  "plugins": ["babel", "node", "react", "jest"],
   "env": {
     "es6": true,
     "jest": true,

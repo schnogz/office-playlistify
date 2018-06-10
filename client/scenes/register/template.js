@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { Field, reduxForm } from 'redux-form'
 import AppHeader from 'components/header'
-import Button from 'material-ui/Button';
+import Button from 'material-ui/Button'
 
-const Fragment = React.Fragment;
+const Fragment = React.Fragment
 
 const Login = (props) => {
-  const { submitting, invalid, ...rest } = props;
-  const { onSubmit, authType } = rest;
+  const { submitting, invalid, ...rest } = props
+  const { onSubmit, authType } = rest
 
   return (
     <Fragment>
@@ -17,6 +17,6 @@ const Login = (props) => {
     </Fragment>
 
   )
-};
+}
 
 export default reduxForm({ form: 'login' })(Login)

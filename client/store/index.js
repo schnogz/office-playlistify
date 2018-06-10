@@ -10,12 +10,12 @@ import { api } from 'services/api'
 const devToolsConfig = {
   maxAge: 1000,
   serialize: {}
-};
+}
 
 const configureStore = () => {
-  const history = createBrowserHistory();
-  const sagaMiddleware = createSagaMiddleware();
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(devToolsConfig) : compose;
+  const history = createBrowserHistory()
+  const sagaMiddleware = createSagaMiddleware()
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(devToolsConfig) : compose
 
   const store = createStore(
     connectRouter(history)(rootReducer),
@@ -26,14 +26,14 @@ const configureStore = () => {
       ),
       autoRehydrate()
     )
-  );
-  sagaMiddleware.run(rootSaga);
-  persistStore(store, { whitelist: ['session', 'preferences'] });
+  )
+  sagaMiddleware.run(rootSaga)
+  persistStore(store, { whitelist: ['session', 'preferences'] })
 
   return {
     store,
     history
   }
-};
+}
 
 export default configureStore

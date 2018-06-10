@@ -7,18 +7,18 @@ import { actions } from 'data'
 import AppHeader from 'components/header'
 import Login from './template'
 
-const Fragment = React.Fragment;
+const Fragment = React.Fragment
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width:100%
-`;
+`
 
 class LoginContainer extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
 
     this.onSubmit = this.onSubmit.bind(this)
   }
@@ -50,16 +50,16 @@ class LoginContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return ({
-    username: formValueSelector('login')(state, 'username'),
-  });
-};
+    username: formValueSelector('login')(state, 'username')
+  })
+}
 
 const mapDispatchToProps = (dispatch) => ({
   authActions: bindActionCreators(actions.auth, dispatch)
-});
+})
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps)
-);
+)
 
 export default enhance(LoginContainer)

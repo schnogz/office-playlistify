@@ -5,4 +5,4 @@ module.exports = {
     client_id: process.env.spotify_client_id ? process.env.spotify_client_id : '',
     client_secret: process.env.spotify_client_secret ? process.env.spotify_client_secret : ''
   }
-};
+}
