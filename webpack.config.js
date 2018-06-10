@@ -1,3 +1,4 @@
+const path = require('path')
 const Webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -38,12 +39,12 @@ module.exports = {
   entry: {
     app: [
       'babel-polyfill',
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      'webpack-hot-middleware/client?reload=true',
       PATHS.src + '/index.js'
     ]
   },
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'client/public'),
     filename: 'app.js',
     publicPath: '/'
   },

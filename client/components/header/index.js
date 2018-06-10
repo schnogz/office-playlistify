@@ -54,9 +54,17 @@ class AppHeader extends React.Component {
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            <img src={logo} alt='Logo' height='35' />
-            <NavLink to='/login' className={classes.flex} style={{ textDecoration: 'none', marginLeft: '15px' }}>
-              <Typography variant='title' color='secondary'>
+            <img alt='Logo'
+                height='35'
+              src={logo}
+            />
+            <NavLink className={classes.flex}
+                style={{ textDecoration: 'none', marginLeft: '15px' }}
+              to='/login'
+            >
+              <Typography color='secondary'
+                variant='title'
+              >
                 Office Playlistify
               </Typography>
             </NavLink>

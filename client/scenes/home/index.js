@@ -1,16 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, bindActionCreators } from 'redux'
+import { compose } from 'redux'
 
 import Home from './template.js'
 
 class LoginContainer extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
-    return <Home/>
+    return <Home />
   }
 }
 

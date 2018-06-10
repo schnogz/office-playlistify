@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const express = require('express')
+const path = require('path')
 const requestIp = require('request-ip')
 const webpack = require('webpack')
 const webpackConfig = require('./../webpack.config')
@@ -22,17 +23,20 @@ app.use(require('method-override')())
 // setup hot reloading
 app.use(require('webpack-dev-middleware')(compiler, {
   logLevel: 'warn',
+  hot: true,
   publicPath: webpackConfig.output.publicPath
 }))
 
-app.use(require('webpack-hot-middleware')(compiler, {
-  log: console.log,
-  path: '/__webpack_hmr',
-  heartbeat: 10 * 1000
-}))
+app.use(require('webpack-hot-middleware')(compiler))
 
 // add api routes
 app.use(require('./routes/index'))
+
+app.use(express.static(path.join(__dirname, 'client')))
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+})
 
 // start server
 let server = app.listen(process.env.PORT || 8080, function () {

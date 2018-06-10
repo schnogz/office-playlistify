@@ -34,10 +34,18 @@ class App extends React.Component {
           <CssBaseline>
             <MuiThemeProvider theme={theme}>
               <Switch>
-                <LoginLayout path='/login' component={Login} />
-                <LoginLayout path='/register' component={Register} />
-                <AuthorizedLayout path='/home' component={Home} />
-                <Redirect from='/' to='/login' />
+                <LoginLayout component={Login}
+                  path='/login'
+                />
+                <LoginLayout component={Register}
+                  path='/register'
+                />
+                <AuthorizedLayout component={Home}
+                  path='/home'
+                />
+                <Redirect from='/'
+                  to='/login'
+                />
               </Switch>
             </MuiThemeProvider>
           </CssBaseline>

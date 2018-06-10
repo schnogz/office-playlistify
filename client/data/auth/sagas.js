@@ -1,11 +1,9 @@
 import fetch from 'cross-fetch'
 import { put, select, takeLatest } from 'redux-saga/effects'
-import { prop, assoc } from 'ramda'
 
 import * as AT from './actionTypes'
 import * as actions from '../actions.js'
 import * as selectors from '../selectors.js'
-import { api } from 'services/api'
 
 export const login = function * (action) {
   yield console.log('login saga start')
@@ -13,10 +11,10 @@ export const login = function * (action) {
   yield fetch(`/api/spotify/login`).then(
     response => response.json(),
     error => console.log('An error occurred.', error)
-  ).then(json =>
+  ).then(json => {
     window.location = json.authorizeURL
     // dispatch(receivePosts(subreddit, json))
-  )
+  })
   yield put(actions.router.push('/home'))
   yield fetch(`/api/spotify/${username}/getPlaylists`).then(
     response => response.json(),

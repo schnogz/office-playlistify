@@ -39,7 +39,7 @@ class LoginContainer extends React.Component {
   render () {
     return (
       <Fragment>
-        <AppHeader auth={false}/>
+        <AppHeader auth={false} />
         <Wrapper>
           <Login onSubmit={this.onSubmit} />
         </Wrapper>

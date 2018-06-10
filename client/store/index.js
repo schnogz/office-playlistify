@@ -4,14 +4,14 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import { createBrowserHistory } from 'history'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 
-import { rootSaga, rootReducer, selectors } from 'data'
-import { api } from 'services/api'
+import { rootSaga, rootReducer } from 'data'
 
 const devToolsConfig = {
   maxAge: 1000,
   serialize: {}
 }
 
+/* eslint-disable no-underscore-dangle */
 const configureStore = () => {
   const history = createBrowserHistory()
   const sagaMiddleware = createSagaMiddleware()

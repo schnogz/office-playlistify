@@ -7,8 +7,12 @@ import configureStore from 'store'
 const { store, history } = configureStore()
 const render = Component => {
   ReactDOM.render(
-    <AppContainer key={Math.random()} warnings={false}>
-      <Component store={store} history={history} />
+    <AppContainer key={Math.random()}
+        warnings={false}
+    >
+      <Component history={history}
+        store={store}
+      />
     </AppContainer>,
     document.getElementById('app')
   )

@@ -18,13 +18,15 @@ const ContentContainer = styled.div`
 
 const AuthorizedLayout = ({component: Component, ...rest}) => {
   return (
-    <Route {...rest} render={matchProps => (
-      <Wrapper>
-        <ContentContainer>
-          <Component {...matchProps} />
-        </ContentContainer>
-      </Wrapper>
-    )} />
+    <Route {...rest}
+      render={matchProps => (
+        <Wrapper>
+          <ContentContainer>
+            <Component {...matchProps} />
+          </ContentContainer>
+        </Wrapper>
+      )}
+    />
   )
 }
 

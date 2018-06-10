@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose, bindActionCreators } from 'redux'
-import { formValueSelector } from 'redux-form'
 
 import Register from './template.js'
-import { actions, selectors } from 'data'
+import { actions } from 'data'
 
 class RegisterContainer extends React.Component {
   constructor (props) {
