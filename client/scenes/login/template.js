@@ -13,18 +13,23 @@ injectGlobal`
     background-image: url(${bgImg});
     background-size: cover;
     background-position: top center;
-    height: 100%;
-    width: 100%;
   }
 `
 
 const styles = theme => ({
   container: {
-    height: '100%'
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   paper: {
-    height: '100%',
-    padding: '25px'
+    backgroundColor: 'transparent',
+    padding: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 })
 
@@ -32,19 +37,23 @@ const Login = (props) => {
   const { classes, onSubmit } = props
 
   return (
-    <Grid container className={classes.container} alignItems={'center'} direction={'row'} justify={'center'}>
-      <Paper square={false} className={classes.paper} alignItems={'center'} direction={'row'} justify={'center'}>
-        <LinkContainer to='/home'>
-          <Button color='primary' onClick={onSubmit} variant='raised'>Login</Button>
-        </LinkContainer>
-        <LinkContainer to='/register'>
-          <Button color='secondary' variant='raised'>Register</Button>
-        </LinkContainer>
-        <LinkContainer to='/home'>
-          <Button color='secondary' variant='raised'>Continue As Guest</Button>
-        </LinkContainer>
+    <div className={classes.container}>
+      <Paper square={false} className={classes.paper}>
+        <div style={{ marginBottom: '15px' }}>
+          <LinkContainer to='/home'>
+            <Button color='primary' onClick={onSubmit} variant='raised'>Login</Button>
+          </LinkContainer>
+          <LinkContainer to='/register'>
+            <Button color='secondary' variant='raised'>Register</Button>
+          </LinkContainer>
+        </div>
+        <div>
+          <LinkContainer to='/home'>
+            <Button color='secondary' variant='raised'>Continue As Guest</Button>
+          </LinkContainer>
+        </div>
       </Paper>
-    </Grid>
+    </div>
   )
 }
 
