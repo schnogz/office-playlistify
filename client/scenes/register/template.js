@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Field, reduxForm } from 'redux-form'
 import AppHeader from 'components/header'
-import Button from 'material-ui/Button'
+import Button from '@material-ui/core/Button'
 
 const Fragment = React.Fragment
 

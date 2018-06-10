@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
-import Button from 'material-ui/Button'
+import Button from '@material-ui/core/Button'
 import { Field, reduxForm } from 'redux-form'
 
 const Wrapper = styled.div`
