@@ -32,10 +32,10 @@ app.use(require('webpack-hot-middleware')(compiler))
 // add api routes
 app.use(require('./routes/index'))
 
-app.use(express.static(path.join(__dirname, 'client')))
+app.use(express.static(path.join('client')))
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+  res.sendFile(path.join('client', 'index.html'))
 })
 
 // start server

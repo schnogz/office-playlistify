@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import Menu, { MenuItem } from '@material-ui/core/Menu'
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
-import logo from 'images/logo.png'
+import logoBlack from 'images/logoBlack.png'
 
 const styles = {
   root: {
@@ -54,17 +54,9 @@ class AppHeader extends React.Component {
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            <img alt='Logo'
-                height='35'
-              src={logo}
-            />
-            <NavLink className={classes.flex}
-                style={{ textDecoration: 'none', marginLeft: '15px' }}
-              to='/login'
-            >
-              <Typography color='secondary'
-                variant='title'
-              >
+            <img alt='Logo' height='35' src={logoBlack} />
+            <NavLink className={classes.flex} style={{ textDecoration: 'none', marginLeft: '15px' }} to='/login'>
+              <Typography color='secondary' variant='title'>
                 Office Playlistify
               </Typography>
             </NavLink>
